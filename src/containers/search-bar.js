@@ -4,13 +4,14 @@ import { bindActionCreators } from 'redux';
 import { fetchWeather } from '../actions/index';
 
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
     constructor(props){
         super(props);
 
         this.state={ term: ""};
 
         this.onInputChange = this.onInputChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
     //add change handler for input
     //all DOM functions have event object as parameter
@@ -22,7 +23,9 @@ export default class SearchBar extends Component {
         event.preventDefault();
 
         //go fetch weather data
-
+        this.props.fetchWeather(this.state.term);
+        //clears out input after hit enter
+        this.setState({ term: ''});
     }
     //make input controlled componenet by adding value = state
     render() {
@@ -41,3 +44,10 @@ export default class SearchBar extends Component {
         )
     }
 }
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({ fetchWeather }, dispatch);
+}
+
+//null is to tell redux we do not care about app state
+export default connect(null, mapDispatchToProps)(SearchBar);

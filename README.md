@@ -1,5 +1,5 @@
 #Stephen Grider Modern React with Redux -- Weather App
-
+Within actions/index.js add your own API key
 # ReduxSimpleStarter
 
 Interested in learning [Redux](https://www.udemy.com/react-redux/)?
